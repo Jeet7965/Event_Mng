@@ -142,7 +142,13 @@ LOGIN_URL = '/login/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Use your SMTP provider
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'sarvajeetchauhan115@gmail.com'
-EMAIL_HOST_PASSWORD = 'ehfq koor nbnq vmqz'
+EMAIL_HOST_USER = 'Email_ID'
+EMAIL_HOST_PASSWORD = 'Your_Password'
 EMAIL_USE_TLS = True
 
+
+# Open AI API_KEY
+OPENAI_API_KEY ="Your_Api_Key"
+
+#GOOGLE_API_KEY
+GOOGLE_MAPS_API_KEY =' Your Api_Key'
