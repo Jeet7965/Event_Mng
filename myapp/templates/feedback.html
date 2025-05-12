@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="max-w-2xl mx-auto mt-10 text-center p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-xl font-bold mb-4 text-gray-800">Give Your Feedback</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <textarea name="message" rows="5" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your feedback..."></textarea>
+    <button type="submit" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Submit</button>
+  </form>
+</div>
+
+
+<!-- Display existing feedbacks -->
+<div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-lg font-semibold mb-4 text-gray-800 text-center">Your Previous Feedback</h2>
+
+  {% for fb in feedbacks %}
+  <div class="border border-gray-300 p-4 mb-4 rounded-md text-left">
+    <p class="text-gray-700"><strong>Message:</strong> {{ fb.message }}</p>
+    <p class="text-xs text-gray-400 mb-2">Submitted on: {{ fb.created_at }}</p>
+
+    {% if fb.admin_reply %}
+    <div class="mt-2 bg-green-50 border border-green-300 p-3 rounded">
+      <strong class="text-green-800">Admin Reply:</strong>
+      <p class="text-green-700">{{ fb.admin_reply }}</p>
+      <p class="text-xs text-gray-400 mt-1">Replied on: {{ fb.replied_at }}</p>
+    </div>
+    {% else %}
+    <p class="text-sm text-yellow-600 italic mt-2">No reply yet from admin.</p>
+    {% endif %}
+  </div>
+  {% empty %}
+  <p class="text-gray-500 text-center">You haven't submitted any feedback yet.</p>
+  {% endfor %}
+</div>
+
+
+{% endblock content %}
